@@ -1,22 +1,27 @@
-<a routerLink="">Về trang chủ</a>
+<a routerLink=""><h5>Về trang chủ</h5></a>
 <table class="table table-bordered">
   <thead>
-  <tr>
-    <th scope="col" colspan="2">Danh sách đọc</th>
+  <tr >
+    <th scope="col" colspan="2" style="border-style: double"><h4 style="text-align: center">Danh sách đọc</h4></th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let book of books; index as index">
+  <tr *ngFor="let book of books; index as index" >
     <td>{{book.name}}</td>
     <td><button (click)="updateBook(index)" class="btn btn-primary">Đã đọc</button></td>
   </tr>
   <tr>
     <td colspan="2">
       <form [formGroup]="newBook" (ngSubmit)="onSubmit(newBook.value)">
-        <input type="text" class="form-control" formControlName="name">   <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="add new book" formControlName="name">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Thêm</button>
+          </div>
+        </div>
       </form>
     </td>
   </tr>
   </tbody>
 </table>
-<a routerLink="/read">Danh sách đã đọc</a>
+<a routerLink="/read"><h5>Danh sách đã đọc</h5></a>

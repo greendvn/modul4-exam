@@ -21,7 +21,9 @@ export class ReadListComponent implements OnInit {
 
   updateBook(index){
     let book = this.books[index];
+    console.log(book);
     book.read = !book.read;
+    console.log(book);
     this.bookService.updateBook(book).subscribe( ()=> this.getReadBooks());
   }
 

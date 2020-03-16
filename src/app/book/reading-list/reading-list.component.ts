@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Book} from "../book";
 import {BookServiceService} from "../../service/book-service.service";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-reading-list',
@@ -28,22 +28,25 @@ export class ReadingListComponent implements OnInit {
   getReadingBooks(){
     this.bookService.getBooks().subscribe(next=>(this.books= next.filter(book=>book.read===false), console.log(this.books) ), error => (this.books = []));
     this.bookService.getBooks().subscribe(next=>(this.booksList= next, console.log(this.booksList) ), error => (this.booksList = []));
-
   }
 
   updateBook(index){
     let book = this.books[index];
+    console.log(book);
     book.read = !book.read;
+    console.log(book);
     this.bookService.updateBook(book).subscribe( ()=> this.getReadingBooks());
   }
 
-  onSubmit(data){
+  onSubmit(data) {
+    if (data.name) {
       let book: Book = {
-        id: this.booksList.length+1,
+        id: this.booksList.length + 1,
         name: data.name,
         read: false
       };
-      this.bookService.addBook(book).subscribe(next=> (this.getReadingBooks(), this.newBook.name=''));
+      this.bookService.addBook(book).subscribe(next => (this.getReadingBooks(), this.newBook.patchValue({name: ''})));
+    }
   }
 
 
