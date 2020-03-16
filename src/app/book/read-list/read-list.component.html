@@ -1,0 +1,15 @@
+<a routerLink="">Về trang chủ</a>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th scope="col" colspan="2">Danh sách đã đọc</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let book of books; index as index">
+    <td>{{book.name}}</td>
+    <td><button (click)="updateBook(index)" class="btn btn-primary">Đọc lại</button></td>
+  </tr>
+  </tbody>
+</table>
+<a routerLink="/reading">Danh sách đọc</a>

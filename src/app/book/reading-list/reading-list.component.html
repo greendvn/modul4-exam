@@ -1,0 +1,22 @@
+<a routerLink="">Về trang chủ</a>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th scope="col" colspan="2">Danh sách đọc</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let book of books; index as index">
+    <td>{{book.name}}</td>
+    <td><button (click)="updateBook(index)" class="btn btn-primary">Đã đọc</button></td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <form [formGroup]="newBook" (ngSubmit)="onSubmit(newBook.value)">
+        <input type="text" class="form-control" formControlName="name">   <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<a routerLink="/read">Danh sách đã đọc</a>
